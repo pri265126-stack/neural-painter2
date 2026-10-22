@@ -1,0 +1,49 @@
+NEURAL PAINTER - FINAL EXPERIMENT REPORT
+================================================
+
+Experiment: Fourier features with hybrid error-guided sampling
+Images tested: 3
+Sampling ratios tested: [np.int64(0), np.int64(10), np.int64(20), np.int64(30)]
+Individual runs recorded: 60
+
+RESULTS BY IMAGE
+------------------------------------------------
+
+Image: archi.jpg
+Uniform sampling MSE: 0.001062
+Best sampling ratio: 30%
+Best mean MSE: 0.000920
+Mean PSNR at best ratio: 30.399 dB
+MSE reduction vs uniform: 13.36%
+
+Image: flower.jpg
+Uniform sampling MSE: 0.000305
+Best sampling ratio: 30%
+Best mean MSE: 0.000057
+Mean PSNR at best ratio: 42.475 dB
+MSE reduction vs uniform: 81.18%
+
+Image: place.jpg
+Uniform sampling MSE: 0.001202
+Best sampling ratio: 20%
+Best mean MSE: 0.001017
+Mean PSNR at best ratio: 29.994 dB
+MSE reduction vs uniform: 15.40%
+
+INTERPRETATION
+------------------------------------------------
+The best sampling ratio differed across the tested images.
+Hybrid sampling achieved lower mean MSE than uniform sampling
+for all three images in this validation experiment.
+
+LIMITATIONS
+------------------------------------------------
+Only three images were evaluated in this validation.
+Each image and ratio combination used five random seeds.
+Results may differ for other images, resolutions, and settings.
+These experiments do not establish universal superiority.
+
+METRICS
+------------------------------------------------
+MSE: lower values indicate smaller pixel-wise reconstruction error.
+PSNR: higher values indicate better reconstruction quality.

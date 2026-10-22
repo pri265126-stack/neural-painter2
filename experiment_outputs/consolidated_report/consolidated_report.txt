@@ -1,0 +1,98 @@
+NEURAL PAINTER - CONSOLIDATED EXPERIMENT REPORT
+=======================================================
+
+1. OBJECTIVE
+Reconstruct an image from its pixel coordinates using an MLP.
+Compare a raw-coordinate Baseline MLP with a Fourier-feature MLP.
+Evaluate hybrid error-guided sampling at different ratios.
+
+2. EXPERIMENTAL SETUP
+Images: archi.jpg, flower.jpg, place.jpg.
+Image resolution: 64 x 64 pixels.
+Evaluation metrics: MSE, PSNR, and training time.
+Fourier comparison: results aggregated across multiple seeds.
+Sampling validation: 3 images x 4 ratios x 5 seeds = 60 runs.
+
+3. BASELINE VS FOURIER RESULTS
+MSE is better when lower; PSNR is better when higher.
+Standard deviations describe variation across the tested runs.
+
+Image: archi.jpg
+  Baseline mean MSE: 0.012006
+  Baseline MSE standard deviation: 0.000646
+  Baseline mean PSNR: 19.21 dB
+  Baseline mean training time: 8.93 seconds
+  Fourier mean MSE: 0.001123
+  Fourier MSE standard deviation: 0.000145
+  Fourier mean PSNR: 29.52 dB
+  Fourier mean training time: 4.62 seconds
+  MSE reduction: 90.65%
+
+Image: flower.jpg
+  Baseline mean MSE: 0.002733
+  Baseline MSE standard deviation: 0.000525
+  Baseline mean PSNR: 25.68 dB
+  Baseline mean training time: 2.75 seconds
+  Fourier mean MSE: 0.000255
+  Fourier MSE standard deviation: 0.000047
+  Fourier mean PSNR: 35.98 dB
+  Fourier mean training time: 2.21 seconds
+  MSE reduction: 90.65%
+
+Image: place.jpg
+  Baseline mean MSE: 0.013345
+  Baseline MSE standard deviation: 0.001058
+  Baseline mean PSNR: 18.76 dB
+  Baseline mean training time: 2.05 seconds
+  Fourier mean MSE: 0.001277
+  Fourier MSE standard deviation: 0.000463
+  Fourier mean PSNR: 29.11 dB
+  Fourier mean training time: 2.08 seconds
+  MSE reduction: 90.43%
+
+4. SAMPLING VALIDATION RESULTS
+Each tested ratio was evaluated against uniform sampling (0%).
+The best ratio below means the lowest mean MSE among tested ratios.
+
+Image: archi.jpg
+  Uniform sampling MSE: 0.001062
+  Best tested ratio: 30%
+  Best MSE: 0.000920
+  MSE reduction vs uniform: 13.36%
+
+Image: flower.jpg
+  Uniform sampling MSE: 0.000305
+  Best tested ratio: 30%
+  Best MSE: 0.000057
+  MSE reduction vs uniform: 81.18%
+
+Image: place.jpg
+  Uniform sampling MSE: 0.001202
+  Best tested ratio: 20%
+  Best MSE: 0.001017
+  MSE reduction vs uniform: 15.40%
+
+5. INTERPRETATION
+The Fourier model achieved lower mean MSE than the baseline on the
+images represented in the available comparison results.
+Sampling results varied by image; no single tested ratio was best
+for every image. These findings apply only to the tested settings.
+
+6. LIMITATIONS
+- Only three images were used for the final sampling validation.
+- The images were resized to 64 x 64 pixels.
+- Results may not generalize to other images or resolutions.
+- The best sampling ratio may vary by image.
+- Results depend on model settings, random seeds, and implementation.
+- Training time depends on the computer and software environment.
+- The experiments do not establish that Fourier features or a sampling
+  ratio will perform best for every possible image.
+
+7. CONCLUSION
+In these experiments, Fourier feature encoding substantially reduced
+reconstruction error relative to the baseline on the tested images.
+Hybrid sampling also improved mean MSE over uniform sampling for the
+tested images, with the best ratio differing across images.
+Further validation on more images and resolutions is needed.
+
+Generated from the project's saved experiment CSV files.
